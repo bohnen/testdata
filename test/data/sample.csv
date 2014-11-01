@@ -1,0 +1,3 @@
+cfg.attr1,cfg.attr2,cfg.attr3,foo.name,foo.gender,foo.age,bar.name,bar.gender,bar.age
+1,TRUE,3,fooname,1,30,barname,2,25
+3,FALSE,2,namefoo,2,80,namebar,1,30

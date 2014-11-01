@@ -14,7 +14,23 @@ module CSVImport
 	# 同じテーブルに同時に複数行Insertしなければいけないケースもあるため、インスタンスを識別できるようにする。
 	# 結果として、{:cfg => {:param1 => val1, :param2 => val2}, :a => {:column1 => val1, column2 => val2}...}
 	# という、入れ子のHashを作成する
-	def parseCSV(file)
-		
+	def parse(file)
+		records = [] 
+		csv = CSV.read(file, headers:true)
+		csv.each do |row|
+			r = {}
+			csv.headers.map{|k| k.split(".")[0]}.uniq.each do |obj|
+				r[obj] = {}
+			end
+
+			row.each do |key, val|
+				obj, atr = key.split(".")
+				r[obj][atr] = val
+			end
+			records << r
+		end
+		records
 	end
+
+	module_function :parse
 end
